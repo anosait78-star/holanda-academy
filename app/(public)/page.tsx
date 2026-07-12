@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getPrograms, getCoaches, getNews, getGalleryImages } from "@/lib/api";
 import HeroVideo from "@/components/public/HeroVideo";
 import SectionWrapper from "@/components/public/SectionWrapper";
+import CoachesGrid from "@/components/public/CoachesGrid";
 import { formatDate } from "@/lib/utils";
 import { Trophy, Users, Star, Shield, Target, Award, ArrowLeft } from "lucide-react";
 
@@ -129,21 +130,7 @@ export default async function HomePage() {
               <span className="text-primary font-medium text-sm uppercase tracking-wider">فريقنا</span>
               <h2 className="section-title mt-2 text-center">كادرنا التدريبي</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {coaches.map((coach) => (
-                <div key={String(coach._id)} className="card text-center p-5 group">
-                  <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-dark-200 mb-4 border-2 border-dark-300 group-hover:border-primary transition-colors">
-                    {coach.photo ? (
-                      <Image src={coach.photo} alt={coach.name} width={80} height={80} className="object-cover w-full h-full" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-2xl">👤</div>
-                    )}
-                  </div>
-                  <h3 className="text-white font-semibold text-sm">{coach.name}</h3>
-                  <p className="text-primary text-xs mt-1">{coach.position}</p>
-                </div>
-              ))}
-            </div>
+            <CoachesGrid coaches={coaches} />
             <div className="text-center mt-10">
               <Link href="/coaches" className="btn-outline">عرض الكادر الكامل <ArrowLeft size={18} /></Link>
             </div>
